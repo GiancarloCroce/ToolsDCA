@@ -27,11 +27,11 @@
             if( dim == 2): for each row, indipendently, shuffle along columns: keep the magnetization of the row
 
     - **switch_gauge.jl**: to switch along different gauge
-            given parameters (h,J) you can go to "lattice gas gauge" and "0sum gauge" (max Froebius norm).
+        - switch_gauge(h,J,mode), mode can be "lattice gas gauge" and "0sum gauge" (max Froebius norm).
             Note: if you use plmDCA ASYMMETRIC the gauge for h_i should be changed indipendently for h_i coming from J_ix and for h_i coming from J_xi (where x is everything exept i)  ---> switch gauge is not good for (h,J) coming out of plmDCA  
 
     - **PPV_ROC.jl**: compute and plot PPV and ROC curve
-            - compute_PPV(v::vector of tp [already sorted according to some measurem eg. Froebius norm of DCA couplings)
-            - compute_ROC(v:: as above)
-            - plot_ROC(v::as above): plot ROC curve and compute the AUC 
+        - compute_PPV(v::vector of tp [already sorted according to some measurem eg. Froebius norm of DCA couplings)
+        - compute_ROC(v:: as above)
+        - plot_ROC(v::as above): plot ROC curve and compute the AUC 
             

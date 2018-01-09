@@ -2,7 +2,7 @@
 using PyPlot
 #function to compute  positive predicted valute PPV (i.e. tp-rate)
 
-#x is a vecotr of zeros and ones (sorted accordi to some measure, usually the J_ij of DCA)
+#x is a vecotr of zeros and ones (sorted according to some measure, usually the J_ij of DCA)
 
 function compute_PPV(x)
     println("the function return the collect(1:length(x)) and the PPV for x")

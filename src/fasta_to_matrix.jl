@@ -4,7 +4,7 @@ using FastaIO
 using Compat
 
 
-#shuffle matrix s.t. the one-point frequencies are conserved but the 2-point are destroyed (i.e. indipendent model)
+#shuffle matrix 
 function shuffle_matrix(a::Matrix,
                         dim::Int,
                         num_times::Int = 1)

@@ -1,4 +1,3 @@
-
 #The dimension of the input parameters must be h=(q,N) and J=(q,q,N,N)
 
 #compute energy of a single sequence
@@ -40,5 +39,15 @@ function compute_energy_MSA(h::Array{Float64,2},
 
 
     return final_E
+end
+
+#compute energy of a MSA
+#fastafile is a fasta file 
+function compute_energy_MSA(h::Array{Float64,2},
+                            J::Array{Float64,4},
+                            fastafile::AbstractString)
+
+    S = fasta2matrix(fastafile,0.9)
+    return compute_energy_MSA(h,J,S)
 end
 

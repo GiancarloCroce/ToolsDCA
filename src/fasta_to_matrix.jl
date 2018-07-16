@@ -15,7 +15,7 @@ function shuffle_matrix(a::Matrix,
     b_old = a
     b_new = zeros(a)
 
-    if dim == 0
+    if dim == 1
         println("shuffle along dimension 0 (shuffling all elements of the matrix)")
         b = shuffle(vec(a))
         return reshape(b,size(a))

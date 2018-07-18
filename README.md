@@ -20,6 +20,7 @@
     
     - **fasta_to_matrix.jl**: map MSA in matrix and shuffling for indipendent model
         - *fasta2matrix*: map fasta MSA in matrix (same of GaussDCA, see "alphabet")
+        - *letter2num*: the FASTA alphabet from char to the number 
         - *shuffle_matrix(matrix, dim, num_of_shuffle)* 
             - matrix: the matrix to be shuffled
             - if( dim == 0): shuffle all elements, no statistics is conserved
@@ -31,7 +32,12 @@
             Note: if you use plmDCA ASYMMETRIC the gauge for h_i should be changed indipendently for h_i coming from J_ix and for h_i coming from J_xi (where x is everything exept i)  ---> switch gauge is not good for (h,J) coming out of plmDCA  
 
     - **PPV_ROC.jl**: compute and plot PPV and ROC curve
-        - *compute_PPV(v::vector of tp)*: v must be already sorted according to some measurem eg. Froebius norm of DCA couplings
-        - *compute_ROC(v:: as above)*
+        - *compute_PPV(v::vector of tp 1-0)*: v must be already sorted according to some measurem eg. Froebius norm of DCA couplings
+        - *plot_PPV(v::as above; label_string, logscale=true/falsee)*: plot PPV curve 
+        - *compute_ROC(v:: as above)*, grep true_positive_rate, negative_positive_rate and AUC
         - *plot_ROC(v::as above)*: plot ROC curve and compute the AUC 
             
+    - **mut_lanscape.jl**: usefull functions for teh mutational landscape analysis 
+        - *compute_single_mut(h::Array{Float64,2},J::Array{Float64,4}, wild_type (fasta_file): compute all single mutant
+        - *compute_double_mut(h::Array{Float64,2},J::Array{Float64,4}, wild_type (fasta_file): compute all double mutant
+    

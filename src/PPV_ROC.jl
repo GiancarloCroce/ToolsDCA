@@ -22,19 +22,22 @@ function compute_PPV(x)
 end
 
 function plot_PPV(x; 
-                  logscale = false)
+                  label::String="None",
+                  log::Bool = false)
     x,y = compute_PPV(x)
 
-    if logscale==true
-        plot(x,y)
+   if  log==true
+        semilogx(x,y,label = label)
         xlabel("Num of predictions")
         ylabel("PPV")
         grid(alpha=0.3)
-    else
-        semilogx(x,y)
+        legend()
+     else
+        plot(x,y, label=label)
         xlabel("Num of predictions")
         ylabel("PPV")
         grid(alpha=0.3)
+        legend()
     end
 end
 

@@ -12,6 +12,7 @@ export compute_energy_single_sequence,
     compute_energy_MSA, 
     compute_single_mut,
     fasta2matrix, 
+    parse_fasta,
     ind_shuffle,
     switch_gauge,
     compute_PPV,
@@ -25,5 +26,6 @@ include("mut_landscape.jl")
 include("fasta_to_matrix.jl")
 include("switch_gauge.jl")
 include("PPV_ROC.jl")
+include("parse_fasta.jl")
 end
 

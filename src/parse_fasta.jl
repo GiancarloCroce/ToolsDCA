@@ -64,8 +64,8 @@ function parse_fasta(filename::AbstractString, max_gap_fraction::Real)
             parsed_seq *= string(c)
         end
         seqid += 1
-        @printf(parsed_fasta, "%s\n", name )
-        @printf(parsed_fasta, "%s\n", parsed_seq)
+        println(parsed_fasta, "%s\n", name )
+        println(parsed_fasta, "%s\n", parsed_seq)
     end
     @assert seqid == length(seqs) + 1
 

@@ -1,5 +1,6 @@
 #it converts a fasta file to a matrix Z = MxN by mapping the letters (residues) to numbers
 
+using Random 
 using FastaIO
 using Compat
 
@@ -9,57 +10,42 @@ function shuffle_matrix(a::Matrix,
                         dim::Int,
                         num_times::Int = 1)
     M,N = size(a)
-
     println("shuffling matrix with: N=",N," M=",M)
-
     b_old = a
-    b_new = zeros(a)
-
+    b_new = zeros(size(a))
     if dim == 1
         println("shuffle along dimension 0 (shuffling all elements of the matrix)")
-        b = shuffle(vec(a))
+        b = Random.shuffle(vec(a))
         return reshape(b,size(a))
-
     elseif dim == 1
         println("shuffle along dimension 1 (keep Pi, destroy Pij)")
         for ii = 1:num_times
             for k = 1:N
-                b_new[:,k] = shuffle(b_old[:,k])
+                b_new[:,k] = Random.shuffle(b_old[:,k])
             end
             b_old = b_new
         end
-
         return b_new
-
     elseif dim==2
         println("shuffle along dimension 2") 
         for ii = 1:num_times
             for k = 1:M
-                b_new[k,:] = shuffle(b_old[k,:])
+                b_new[k,:] = Random.shuffle(b_old[k,:])
             end
             b_old = b_new
         end
-
         return b_new
-
    end
-
-
 end
 
 #read a fasta and get a matrix MxN
 function fasta2matrix(filename::AbstractString, max_gap_fraction::Real)
-
     f = FastaReader(filename)
-
     max_gap_fraction = Float64(max_gap_fraction)
-
     # pass 1
-
     seqs = Int[]
     inds = Int[]
     fseqlen = 0
-
     for (name, seq) in f
         ngaps = 0
         if f.num_parsed == 1
@@ -89,12 +75,10 @@ function fasta2matrix(filename::AbstractString, max_gap_fraction::Real)
         end
         ngaps / fseqlen <= max_gap_fraction && push!(seqs, f.num_parsed)
     end
-
     length(seqs) > 0 || error("Out of $(f.num_parsed) sequences, none passed the filter (max_gap_fraction=$max_gap_fraction)")
-
     # pass 2
-    Z = Array{Int8}(fseqlen, length(seqs))
-
+    Z = Array{Int8}(undef,fseqlen, length(seqs))
+    #Z = Array{fseqlen, length(seqs)}
     seqid = 1
     for (name, seq) in f
         seqs[end] < f.num_parsed && break
@@ -106,10 +90,8 @@ function fasta2matrix(filename::AbstractString, max_gap_fraction::Real)
         seqid += 1
     end
     @assert seqid == length(seqs) + 1
-
     close(f)
-
-    return Z'
+    return Array{Int8,2}(Z')
 end
 
 let alphabet = [ 1,21, 2, 3, 4, 5, 6, 7, 8,21, 9,10,11,12,21,13,14,15,16,17,21,18,19,21,20]

@@ -14,11 +14,13 @@ export compute_energy_single_sequence,
     fasta2matrix, 
     parse_fasta,
     ind_shuffle,
+    compute_freq_corr,
     switch_gauge,
     compute_PPV,
     plot_PPV,
     compute_ROC,
-    plot_ROC
+    plot_ROC,
+    PCA
 
 
 include("compute_energy.jl")
@@ -27,5 +29,7 @@ include("fasta_to_matrix.jl")
 include("switch_gauge.jl")
 include("PPV_ROC.jl")
 include("parse_fasta.jl")
+include("compute_frequencies.jl")
+include("PCA.jl")
 end
 

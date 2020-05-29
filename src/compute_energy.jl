@@ -31,7 +31,7 @@ function compute_energy_MSA(h::Array{Float64,2},
     #println("N=", N, " M=",M, " q=",q)
 
     @sync begin
-        @parallel for i_seq = 1:M
+        for i_seq = 1:M
             #println("M ",i_seq)
             final_E[i_seq] = compute_energy_single_sequence(h,J,S[i_seq,:])
         end
